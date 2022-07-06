@@ -1,0 +1,19 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+on message 0x2
+{
+  if(this.byte(0) == 0) write("Stergatoare oprite."); 
+  else if(this.byte(0)== 1) write("Viteza stergatoare: 1."); 
+  else if(this.byte(0)== 2) write("Viteza stergatoare: 2."); 
+  else if(this.byte(0)== 3) write("Viteza stergatoare: 3."); 
+  else write("Comanda eronata.");
+}

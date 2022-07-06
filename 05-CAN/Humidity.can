@@ -1,0 +1,27 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  msTimer myTimer;
+  byte myNumber = 0;
+}
+
+on timer myTimer
+{
+  Message* temporaryMessage; 
+  temporaryMessage.id = 0x1;
+  temporaryMessage.dlc = 1;
+  myNumber = random(31);
+  temporaryMessage.byte(0) = myNumber;
+  write("Indice umiditate: %x.", myNumber); 
+  output(temporaryMessage); 
+  setTimer(myTimer, 20000);
+}
+on start
+{
+  setTimer(myTimer, 20000);
+}

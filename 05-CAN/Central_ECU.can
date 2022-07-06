@@ -1,0 +1,30 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  byte myNumber = 0;
+}
+
+on message 0x1
+{
+  if(this.byte(0) < 3) write("Intensitate ploaie: Nu ploua.");
+  else if(this.byte(0) < 11) write("Intensitate ploaie: Redusa.");
+  else if(this.byte(0) < 21) write("Intensitate ploaie: Medie.");
+  else if(this.byte(0) < 31) write("Intensitate ploaie: Mare.");
+}
+
+on key 's'
+{
+  Message* temporaryMessage; 
+  temporaryMessage.id = 0x2;
+  temporaryMessage.dlc = 1;
+  temporaryMessage.byte(0) = myNumber;
+  write("Viteza comanda stergatoare: %x.", myNumber);
+  if(myNumber > 3)  myNumber = 0;
+  else myNumber++;
+  output(temporaryMessage); 
+}

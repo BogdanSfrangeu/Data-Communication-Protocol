@@ -1,0 +1,29 @@
+/*@!Encoding:1252*/
+includes
+{
+  
+}
+
+variables
+{
+  dword file;
+  char buffer[283];
+  int index;
+}
+
+on start
+{
+  Message* temporaryMessage;
+  temporaryMessage.id = 0x1;
+  temporaryMessage.dlc = 1;
+  file = openFileRead("source.txt", 0);
+  while(fileGetString(buffer,elcount(buffer),file)!=0)
+  { 
+    for(index = 0;index < elcount(buffer); index++) 
+    {
+      temporaryMessage.byte(0) = buffer[index]; 
+      output(temporaryMessage);
+    }
+  }
+  fileClose(file);
+}
